@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html class="animate__animated animate__fadeInLeft">
+<head>
+	 <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Jomhuria&display=swap" rel="stylesheet">
+	<title>menu nav</title>
+</head>
+<body>
+	<style>
+		#nav{
+			display: flex;
+			flex-direction: row;
+    		justify-content: space-around;
+
+    		transition: all 1s;
+            background: #262626;
+            color: white;
+            z-index: 0;
+		}
+		.menu-item {
+			font-family: 'Jomhuria', cursive;   
+    		position: relative;
+    		font-size: 50px;
+    		cursor: pointer; /*Указатель курсора мыши*/
+    		transition: all 1s;
+            height: 50px;
+            width: 50px;
+            z-index: 9999999999999;
+}
+.menu-item .submenu {
+	top: 100%;
+    height: 50px; /*высота открывающегося блока - не обязательный пункт*/
+    width: 150px;/*ширина блока*/
+    background: greenyellow; /*фон*/
+    display: none; /*скрываем все пункты меню*/
+    position: absolute;
+    cursor: pointer;
+    transition: all 1s;
+    
+}
+.container__submenu1{
+    color: black;
+    width: 300px;
+}
+.container__submenu{
+    color: black;
+    width: 100px;
+}
+.submenu {
+	top: 100%;
+	transition: top 1s;
+	display: none;
+}
+.menu-item:hover{
+	display: block;
+	top: 100%;
+	position: relative;
+}
+	</style>
+
+
+<div id="nav">
+        <div class="menu-item">
+            about
+            <div id="submenu">
+            	<div class="container__submenu1">
+                    about text for exampole
+                    about text for exampole
+                    about text for exampole
+                    about text for exampole
+                    width: 300px;
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            home
+            <div id="submenu">
+                <div class="container__submenu">
+                    home width: 100px;
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            star
+            <div id="submenu">
+                <div class="container__submenu">
+                    star width: 100px;
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+window.onload = () => {
+    var subm=document.querySelectorAll('#submenu');
+    for (var i=0; i<subm.length; i++) {
+        subm[i].style.display="none";
+    }
+}
+document.getElementById('nav').onmouseover= function(event) {
+    var target = event.target; // где был клик?
+    if (target.className == 'menu-item') {
+        //debugger
+        var s=target.querySelectorAll('#submenu');
+        closeMenu();
+        //animate__animated animate__bounceIn
+        s[0].className='animate__animated animate__bounceIn';
+        s[0].style.display='block';
+    }
+}
+document.onmousemove=function(event) {
+    var target = event.target; // где был клик?
+    if (target.className!='menu-item' && target.className!='submenu' && target.className!='container__submenu' && target.className!='container__submenu1') {
+        closeMenu();
+    }
+}
+function closeMenu(){
+    var menu=document.getElementById('nav');
+    var subm=document.querySelectorAll('#submenu');
+    
+    for (var i=0; i<subm.length; i++) {
+        subm[i].className="animate__animated animate__bounceOut";
+        //subm[i].style.display="none";
+    }
+}
+    </script>
+</body>
+</html>
